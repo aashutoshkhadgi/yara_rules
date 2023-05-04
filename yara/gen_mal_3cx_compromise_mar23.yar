@@ -338,21 +338,6 @@ rule MAL_3CXDesktopApp_MacOS_UpdateAgent_Mar23 {
       ) or all of them
 }
 
-rule SUSP_APT_3CX_Regtrans_Anomaly_Apr23 : METARULE {
-   meta:
-      description = "Detects suspicious .regtrans-ms files with suspicious size or contents"
-      author = "Florian Roth"
-      reference = "https://www.3cx.com/blog/news/mandiant-initial-results/"
-      date = "2023-04-12"
-      score = 60
-   strings:
-      $fp1 = "REGISTRY" wide
-   condition:
-      extension == ".regtrans-ms" and (
-         filesize < 100KB
-         and not 1 of ($fp*)
-      )
-}
 
 rule APT_MAL_VEILEDSIGNAL_Backdoor_Apr23_2 {
    meta:
